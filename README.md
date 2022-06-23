@@ -3,8 +3,8 @@ This technical exercise uses React.js, Flask, and Python sqlite3.
 
 ## Create the database and insert sample data
 link: https://github.com/kimjiyun725/tracker-db
-1. Move into the `bespoked_api` directory:
-* `cd ./bespoked_api`
+1. Move into the `tracker-db` directory:
+* `cd ./tracker-db`
 
 2. Create the sqlite3 database:
 * `python3.9 table_utils.py`
@@ -29,8 +29,8 @@ link: https://github.com/kimjiyun725/tracker-db
 * `flask run`
 
 ## Launch up the local React.js App
-1. Move into the `bespoked-sales-tracker` directory:
-* `cd ./bespoked-sales-tracker`
+1. Move into the `tracker` directory:
+* `cd ./tracker`
 
 3. Run it:
 * `npm start`
