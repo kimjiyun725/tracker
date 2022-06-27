@@ -18,7 +18,7 @@ function ProductPage() {
         <div style={{
             marginTop: '50px'
             }}>
-            <ProductForm onNewProduct={product => setProducts(currentProducts => [...currentProducts, product])} />
+            <ProductForm />
             <Products products={products} />
         </div>
     )

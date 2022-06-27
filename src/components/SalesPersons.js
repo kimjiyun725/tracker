@@ -33,6 +33,7 @@ export const SalesPersons = ({ salesPersons }) => {
                                 <TableCell>{salesPerson.phone}</TableCell>
                                 <TableCell>{salesPerson.start_date}</TableCell>
                                 <TableCell>{salesPerson.termination_date}</TableCell>
+                                <TableCell>{salesPerson.manager}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
