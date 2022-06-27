@@ -18,7 +18,7 @@ function SalesPersonPage() {
         <div style={{
             marginTop: '50px'
             }}>
-            <SalesPersonForm onNewSalesPerson={salesPerson => setSalesPersons(currentSalesPersons => [...currentSalesPersons, salesPerson])} />
+            <SalesPersonForm />
             <SalesPersons salesPersons={salesPersons} /> 
         </div>
     )

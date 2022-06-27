@@ -3,10 +3,10 @@ import { Container } from '@mui/system';
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-export const ManagerForm = ({onNewManager}) => {
-    
-    const [manager, setManager] = useState([]);
+export const ManagerForm = () => {
+
     const [addFormData, setAddFormData] = useState({
+        id: uuidv4(),
         first_name: '',
         last_name: '',
     });
@@ -20,21 +20,9 @@ export const ManagerForm = ({onNewManager}) => {
         setAddFormData(newFormData);
     };
 
-    const handleAddFormSubmit = (event) => {
-        event.preventDefault();
-        const newManager = {
-            id: uuidv4(),
-            first_name: addFormData.first_name,
-            last_name: addFormData.last_name,
-        };
-
-        const newManagers = [...manager, newManager];
-        setManager(newManagers);
-    };
-
     return (
         <Container style={{marginTop: '10px'}} maxWidth={false}>
-            <form onSubmit={handleAddFormSubmit}>
+            <form>
                 <TextField
                 required
                 style={{marginRight: '10px'}}
@@ -56,20 +44,14 @@ export const ManagerForm = ({onNewManager}) => {
                     variant='contained' 
                     type='submit' 
                     onClick={async () => {
-                        const send = manager;
-                        const response = await fetch('/managers', {
+                        const send = addFormData;
+                        await fetch('/managers', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
                             },
                             body: JSON.stringify(send)
                         })
-                        
-                        if (response.ok) {
-                            console.log('reponse worked!');
-                            onNewManager(manager)
-
-                        }
                     }}>Add Manager</Button>
             </form>
         </Container>

@@ -3,17 +3,17 @@ import { Container } from '@mui/system';
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-export const SalesPersonForm = ({onNewSalesPerson}) => {
+export const SalesPersonForm = () => {
     
-    const [salesPerson, setSalesPerson] = useState([]);
     const [addFormData, setAddFormData] = useState({
+        id: uuidv4(),
         first_name: '',
         last_name: '',
         address: '',
         phone: '',
         start_date: '',
         termination_date: '',
-        manager:''
+        manager: ''
     });
 
     const handleAddFormChange = (event) => {
@@ -25,26 +25,9 @@ export const SalesPersonForm = ({onNewSalesPerson}) => {
         setAddFormData(newFormData);
     };
 
-    const handleAddFormSubmit = (event) => {
-        event.preventDefault();
-        const newSalesPerson = {
-            id: uuidv4(),
-            first_name: addFormData.first_name,
-            last_name: addFormData.last_name,
-            address: addFormData.address,
-            phone: addFormData.phone,
-            start_date: addFormData.start_date,
-            termination_date: addFormData.termination_date,
-            manager: addFormData.manager
-        };
-
-        const newSalesPersons = [...salesPerson, newSalesPerson];
-        setSalesPerson(newSalesPersons);
-    };
-
     return (
         <Container style={{marginTop: '10px'}} maxWidth={false}>
-            <form onSubmit={handleAddFormSubmit}>
+            <form>
                 <TextField
                 required
                 style={{marginRight: '10px'}}
@@ -106,20 +89,14 @@ export const SalesPersonForm = ({onNewSalesPerson}) => {
                     variant='contained' 
                     type='submit' 
                     onClick={async () => {
-                        const send = salesPerson;
-                        const response = await fetch('/salespersons', {
+                        const send = addFormData;
+                        await fetch('/salespersons', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
                             },
                             body: JSON.stringify(send)
                         })
-                        
-                        if (response.ok) {
-                            console.log('reponse worked!');
-                            onNewSalesPerson(salesPerson)
-
-                        }
                     }}>Add SalesPerson</Button>
             </form>
         </Container>

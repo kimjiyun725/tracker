@@ -17,7 +17,7 @@ function ManagerPage() {
         <div style={{
             marginTop: '50px'
             }}>
-            <ManagerForm onNewManager={manager => setManagers(currentManagers => [...currentManagers, manager])} />
+            <ManagerForm />
             <Managers managers={managers} /> 
         </div>
     )
